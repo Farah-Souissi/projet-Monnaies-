@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur de Devises</title> <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://flagcdn.com">
+
+    <!-- Script pour le menu hamburger et le mode sombre -->
+<script>
+// ========================================
+// Menu Hamburger Responsive
+// ========================================
+function toggleMenu() {
+    const nav = document.querySelector('.nav-links');
+    const menuToggle = document.querySelector('.menu-toggle');
+    
+    nav.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+}
+
+// Fermer le menu quand on clique sur un lien
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        const nav = document.querySelector('.nav-links');
+        const menuToggle = document.querySelector('.menu-toggle');
+        nav.classList.remove('active');
+        menuToggle.classList.remove('active');
+    });
+});
+
+// ========================================
+// Mode Jour/Nuit (Dark Mode)
+// ========================================
+const darkToggle = document.getElementById('darkToggle');
+
+// Vérifier si un mode a été sauvegardé dans localStorage
+if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark');
+    if (darkToggle) darkToggle.checked = true;
+}
+
+// Toggle le mode sombre
+if (darkToggle) {
+    darkToggle.addEventListener('change', () => {
+        if (darkToggle.checked) {
+            document.body.classList.add('dark');
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            document.body.classList.remove('dark');
+            localStorage.setItem('darkMode', 'disabled');
+        }
+    });
+}
+</script>
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Monnaies</div>
+
+    <!-- Bouton hamburger pour mobile -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+        <ul class="nav-links">
+            <li><a href="indexe.html">Accueil</a></li> 
+            <li><a href="convertisseur.html" class="active">Convertisseur</a></li>
+            <li><a href="monnaies.html">Monnaie</a></li>
+            <li><a href="histoire.html">Histoire</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="toggle-container">
+        <span>🌞</span>
+        <label class="switch">
+            <input type="checkbox" id="darkToggle">
+            <span class="slider round"></span>
+        </label>
+        <span>🌙</span>
+    </div>
+
+    <div class="container">
+    <h1>Convertisseur de Devises</h1> 
+
+    <div class="converter-box">
+        <!-- Montant -->
+        <div class="input-group">
+            <label>Montant</label>
+            <input type="number" id="amount" placeholder="Entrez le montant" />
+        </div>
+
+        <!-- Devises : De et À en ligne -->
+        <div class="currency-row">
+            <div class="input-group">
+                <label>De</label>
+                <div class="select-flag-box">
+                    <img id="fromFlag" class="flag" src="" alt="Drapeau">
+                    <select id="fromCurrency"></select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>À</label>
+                <div class="select-flag-box">
+                    <img id="toFlag" class="flag" src="" alt="Drapeau">
+                    <select id="toCurrency"></select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bouton Convertir -->
+        <button onclick="convert()"> Convertir</button>
+        
+        <!-- Loader -->
+        <div id="loading" class="loader hidden"></div>
+
+        <!-- Résultat -->
+        <h2 id="result"></h2>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+
+   <footer class="main-footer">
+    <div class="footer-content">
+        <p>&copy; 2025 - Projet Monnaies du Monde</p>
+        <p>Réalisé par :</p>
+        <p><strong>Ben Fadhel Meha GROUPE 1 BI</strong></p>
+        <p><strong>Souissi Farah GROUPE 2 BI</strong></p>
+    </div>
+</footer>
+
+
+</body>
+</html>
+
+

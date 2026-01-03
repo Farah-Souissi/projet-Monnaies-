@@ -1,0 +1,717 @@
+/* ========================================= */
+/* 1. RESET & STYLES GLOBAUX                 */
+/* ========================================= */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+h1 { 
+    text-align: center; 
+    margin-bottom: 25px; 
+    color: #333; 
+}
+
+/* ========================================= */
+/* 2. NAVBAR RESPONSIVE                      */
+/* ========================================= */
+.navbar {
+    background: #2c2c2c;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 1001;
+}
+
+/* Menu hamburger (caché par défaut sur desktop) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #ffffff;
+    margin: 4px 0;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #64b5f6;
+}
+
+.nav-links a.active {
+    color: #64b5f6;
+    border-bottom: 2px solid #64b5f6;
+    padding-bottom: 5px;
+}
+
+/* ========================================= */
+/* 3. CONTENEURS & HERO                      */
+/* ========================================= */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 25px 30px;
+    border-radius: 12px;
+    background: white;
+    text-align: center;
+    transition: 0.3s ease;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+    border-top: 4px solid #d4af37;
+}
+
+/* Hero Banner */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('money.jpg') center/cover no-repeat;
+    padding: 100px 20px;
+    color: white;
+    text-align: center;
+}
+
+/* Animation Titre Hero */
+.hero h1 {
+    width: 0; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    margin: 0 auto;
+    border-right: 0.15em solid orange;
+    animation: typing 4s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
+    color: white !important;
+}
+
+.hero p { 
+    color: white !important; 
+}
+
+@keyframes typing { 
+    from { width: 0 } 
+    to { width: 100% } 
+}
+
+@keyframes blink-caret { 
+    from, to { border-color: transparent } 
+    50% { border-color: orange; } 
+}
+
+/* ========================================= */
+/* 4. FORMULAIRES & BOUTONS                  */
+/* ========================================= */
+input, select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background: white;
+    color: #333;
+    transition: 0.3s ease;
+}
+
+button {
+    padding: 12px;
+    width: 100%;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s;
+}
+
+button:hover { 
+    background: #0056b3; 
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* ========================================= */
+/* 5. CONVERTISSEUR                          */
+/* ========================================= */
+.converter-box { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 25px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.currency-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.select-flag-box { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px;
+    width: 100%;
+    position: relative;
+}
+
+.select-flag-box select {
+    flex: 1;
+    padding-left: 15px;
+}
+
+.flag { 
+    width: 32px; 
+    height: 24px; 
+    border-radius: 4px; 
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Animation Drapeau */
+@keyframes flag-flash {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15) rotate(5deg); }
+    100% { transform: scale(1); }
+}
+
+.flag.flash { 
+    animation: flag-flash 0.3s ease-out; 
+}
+
+.flag:hover {
+    transform: scale(1.1);
+}
+
+.converter-box button {
+    margin-top: 10px;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.converter-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+/* Loader */
+.loader {
+    border: 5px solid #f3f3f3; 
+    border-top: 5px solid #007bff;
+    border-radius: 50%; 
+    width: 40px; 
+    height: 40px; 
+    margin: 15px auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 
+    to { transform: rotate(360deg); } 
+}
+
+.hidden { 
+    display: none; 
+}
+
+/* Résultat */
+#result {
+    text-align: center; 
+    font-size: 24px; 
+    font-weight: bold; 
+    margin-top: 20px;
+    opacity: 0; 
+    transform: translateY(10px); 
+    transition: all 0.5s ease-out;
+}
+
+#result.show { 
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+/* ========================================= */
+/* 6. GALERIE & CARTES                       */
+/* ========================================= */
+.galerie-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.galerie-header h1 {
+    color: #d4af37;
+    margin-bottom: 15px;
+}
+
+.filters {
+    margin-top: 20px;
+}
+
+.filters select {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid #d4af37;
+    background: white;
+    cursor: pointer;
+}
+
+.galerie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.monnaie-card {
+    background: linear-gradient(145deg, #f8f8f8, #e8e8e8);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.monnaie-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+}
+
+.monnaie-card img {
+    width: 100%; 
+    max-width: 150px;
+    height: auto; 
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 4px solid #d4af37;
+    transition: transform 0.3s ease;
+}
+
+.monnaie-card:hover img {
+    transform: scale(1.1);
+}
+
+.monnaie-card h3, .monnaie-card h2 {
+    color: #2c2c2c;
+    margin: 15px 0 10px 0;
+    font-size: 22px;
+}
+
+.monnaie-card p {
+    color: #555;
+    margin: 5px 0;
+    line-height: 1.6;
+}
+
+/* Effet brillant */
+.coin-effect {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.monnaie-card:hover .coin-effect {
+    opacity: 1;
+}
+
+/* Lien Musée */
+.museum-link {
+    display: inline-block; 
+    margin-top: 15px; 
+    padding: 8px 15px;
+    background-color: #d4af37; 
+    color: black; 
+    text-decoration: none;
+    border-radius: 20px; 
+    font-size: 0.9em; 
+    font-weight: bold; 
+    transition: background 0.3s;
+}
+
+.museum-link:hover { 
+    background-color: #b8962d; 
+    color: white; 
+}
+
+/* ========================================= */
+/* 7. VIDÉO                                  */
+/* ========================================= */
+.video-section {
+    max-width: 800px; 
+    margin: 50px auto;
+}
+
+.video-section h2 { 
+    margin-bottom: 25px; 
+    color: #333; 
+}
+
+.video-wrapper {
+    position: relative; 
+    padding-bottom: 56.25%; 
+    height: 0; 
+    overflow: hidden;
+    border-radius: 10px; 
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25); 
+    background: black;
+}
+
+.video-wrapper iframe, 
+.local-video {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    border: none; 
+    object-fit: cover;
+}
+
+/* ========================================= */
+/* 8. FOOTER                                 */
+/* ========================================= */
+.main-footer {
+    background-color: #000000; 
+    color: #ffffff; 
+    text-align: center;
+    padding: 30px 0; 
+    margin-top: 60px; 
+    border-top: 3px solid #64b5f6;
+}
+
+.footer-content p { 
+    margin: 5px 0; 
+    font-size: 0.95em; 
+    letter-spacing: 0.5px; 
+}
+
+.footer-content strong { 
+    color: #d4af37; 
+    font-weight: bold; 
+}
+
+/* ========================================= */
+/* 9. DARK MODE (Toggle & Styles)            */
+/* ========================================= */
+.toggle-container { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 15px 0 20px; 
+    gap: 10px; 
+}
+
+.switch { 
+    position: relative; 
+    display: inline-block; 
+    width: 50px; 
+    height: 24px; 
+}
+
+.switch input { 
+    display: none; 
+}
+
+.slider {
+    position: absolute; 
+    cursor: pointer; 
+    background-color: #ccc; 
+    border-radius: 34px;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute; 
+    content: ""; 
+    height: 18px; 
+    width: 18px;
+    left: 3px; 
+    bottom: 3px; 
+    background-color: white; 
+    border-radius: 50%; 
+    transition: 0.4s;
+}
+
+input:checked + .slider { 
+    background-color: #007bff; 
+}
+
+input:checked + .slider:before { 
+    transform: translateX(26px); 
+}
+
+/* Thème Sombre */
+body.dark,
+.dark { 
+    background: #1f1f1f !important; 
+    color: white !important; 
+}
+
+.dark .container {
+    background: #2b2b2b;
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.dark .monnaie-card {
+    background: linear-gradient(145deg, #3a3a3a, #2b2b2b);
+    color: white;
+}
+
+.dark .monnaie-card h3,
+.dark .monnaie-card h2 {
+    color: #d4af37;
+}
+
+.dark .monnaie-card p {
+    color: #cccccc;
+}
+
+.dark h1, 
+.dark label, 
+.dark .video-section h2,
+.dark .galerie-header h1,
+.dark .galerie-header p { 
+    color: white; 
+}
+
+.dark .input-group label {
+    color: white;
+}
+
+.dark input, 
+.dark select { 
+    background: #444; 
+    color: white; 
+    border: 1px solid #777; 
+}
+
+.dark button { 
+    background: linear-gradient(135deg, #00aaff 0%, #008ecc 100%);
+}
+
+.dark button:hover { 
+    background: linear-gradient(135deg, #008ecc 0%, #0077aa 100%);
+}
+
+.dark #result { 
+    color: #00aaff; 
+}
+
+.dark .main-footer { 
+    background-color: #000000; 
+    border-top-color: #00aaff; 
+}
+
+.dark .filters select {
+    background: #444;
+    color: white;
+    border-color: #d4af37;
+}
+
+.dark .flag {
+    border-color: #555;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================= */
+/* 10. RESPONSIVE MOBILE                     */
+/* ========================================= */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 300px;
+        background: #2c2c2c;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        font-size: 20px;
+        padding: 10px 20px;
+    }
+
+    .nav-links a.active {
+        border-bottom: none;
+        border-left: 3px solid #64b5f6;
+        padding-left: 17px;
+    }
+
+    /* Animation du menu hamburger */
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .currency-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .galerie-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    .nav-links {
+        width: 80%;
+    }
+
+    input, select {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    button {
+        font-size: 16px;
+    }
+
+    .galerie-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .monnaie-card {
+        padding: 20px;
+    }
+
+    #result {
+        font-size: 18px;
+    }
+
+    .converter-box {
+        gap: 20px;
+    }
+}
